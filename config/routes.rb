@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index, :show] do
+    resources :links, only: [:new, :create, :edit, :update], shallow: true
+  end
+
   resources :friends, :controller => 'friendships', :except => [:show, :edit] do
     get "requests", :on => :collection
     get "invites", :on => :collection
