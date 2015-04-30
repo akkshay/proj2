@@ -1,5 +1,18 @@
 <h3> Hello!</h3>
 
-<%= current_user.name%>
+	
+<% if current_user %>	
+	<%= current_user.name %>
+	<%= button_to "Create a New Link!", new_user_link_path(user_id: current_user.id), :class => "button medium", :method => :get %>
 
-<%= button_to "Create a New Link!", new_user_link_path(user_id: current_user.id), :class => "button medium", :method => :get %>
+	<% @links = Link.all %>
+	<br>
+	<h2>Your links:</h2>
+	<br>
+	<% @links.each do |l| %>
+	        <% if l.user_id == current_user.id %>
+	                URL:  <%= l.url %>
+	               <%= button_to "Send a Link!", send_path(sender_id: current_user.id, link_id: l.id), :class => "button medium", :method => :patch %>
+	        <% end %>
+	<% end %>
+<% end %>

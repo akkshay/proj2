@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get "requests", :on => :collection
     get "invites", :on => :collection
   end
+  patch "links/send/:sender_id/:link_id", to: "links#send_link", as: "send"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

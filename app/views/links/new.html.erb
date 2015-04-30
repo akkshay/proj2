@@ -1,0 +1,6 @@
+<h1>A New Link for <%= @user.name %></h1>
+
+<%= simple_form_for @link, :url => user_links_path do |f| %>
+  <%= f.input :url %>
+  <%= f.button :submit, "Create" %>
+<% end %>
