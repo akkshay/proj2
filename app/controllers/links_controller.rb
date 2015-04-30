@@ -8,10 +8,11 @@ class LinksController < ApplicationController
   def create
     @user = User.find params[:user_id]
     @link = @user.links.build link_params
+    @link.save
     if @link.save
       redirect_to @link.user
     else
-      render "new"
+      redirect_to users_path
     end
   end
 
