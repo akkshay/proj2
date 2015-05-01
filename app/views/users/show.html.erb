@@ -6,11 +6,16 @@
 	<% @link.receivers.each do |arr| %>
 		<% if arr[0]  == @user.id %>
 			<% sender_id = arr[1] %>
+			Title: <%= @link.title %> 
+			<br>
+			URL: <%= @link.url %>
+			<br>
+			Sender: <%= (User.find(sender_id)).name %>
+			<br>
+			Points: <%= @link.points %>
+			<br>
 			<% break %>
 		<% end %>
+
 	<% end %> 
-	Title: <%= @link.title %>
-	URL: <%= @link.url %>
-	Sender: <%= (User.find(sender_id)).name)
-	Points: <%= @link.points %>
 <% end %>

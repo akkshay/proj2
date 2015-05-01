@@ -11,8 +11,41 @@
 	<br>
 	<% @links.each do |l| %>
 	        <% if l.user_id == current_user.id %>
+	        		Title: <%= l.title %>
+	        		<br>
 	                URL:  <%= l.url %>
-	               <%= button_to "Send a Link!", send_path(sender_id: current_user.id, link_id: l.id), :class => "button medium", :method => :patch %>
+	                <br>
+	                Points: <%= l.points %>
+	                <br>
+	               <%= button_to "Send a Link!", pre_send_path(sender_id: current_user.id, link_id: l.id), :class => "button medium", :method => :patch %>
+	               <br>
+	               <br>
 	        <% end %>
 	<% end %>
+	<h2>Links Received:</h2>
+	<% @user = current_user %>
+	<% if @user.received %>
+		<% @user.received.each do |link_id| %>
+		<% @link = Link.find(link_id) %>
+		<% @link.receivers.each do |arr| %>
+			<% if arr[0]  == @user.id %>
+				<% sender_id = arr[1] %>
+				Title: <%= @link.title %> 
+				<br>
+				URL: <%= @link.url %>
+				<br>
+				Sender: <%= (User.find(sender_id)).name %>
+				<br>
+				Link creator: <%= User.find(@link.user_id).name %>
+				<br>
+				Points: <%= @link.points %>
+				<br>
+				<%= button_to "Send a Link!", pre_send_path(sender_id: current_user.id, link_id: @link.id), :class => "button medium", :method => :patch %>
+				<br>
+				<br>
+				<% break %>
+			<% end %>
+		<% end %> 
+	<% end %>
+<% end %>
 <% end %>

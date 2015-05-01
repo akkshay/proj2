@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :users, only: [:index, :show] do
-    resources :links, only: [:new, :create, :edit, :update], shallow: true
+    #resources :links, only: [:new, :create, :edit, :update], shallow: true
+    resources :links, only: [:new, :create, :edit], shallow: true
   end
 
   resources :friends, :controller => 'friendships', :except => [:show, :edit] do
     get "requests", :on => :collection
     get "invites", :on => :collection
   end
-  patch "links/send/:sender_id/:link_id", to: "links#send_link", as: "send"
+  patch "links/pre_send/:sender_id/:link_id", to: "links#pre_send", as: "pre_send"
+  patch "links/send/:sender_id/:link_id/username", to: "links#send_link", as: "send"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

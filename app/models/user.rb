@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   # validates :name, presence: true
   validates :email, presence: true
-
+  serialize :received
   include Amistad::FriendModel
   has_many :links
 end

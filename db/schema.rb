@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150430022422) do
+ActiveRecord::Schema.define(version: 20150501030655) do
 
 # Could not dump table "links" because of following NoMethodError
 #   undefined method `[]' for nil:NilClass
