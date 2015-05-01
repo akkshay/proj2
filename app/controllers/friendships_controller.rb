@@ -47,16 +47,19 @@ class FriendshipsController < ApplicationController
   end
 
   def delete
-    @user = User.find_by_name params[:user][:name]
+    @user = User.find params[:user_id]
     @deleter = current_user
+    @deletee = User.new
   end
 
   def destroy
-    @user = User.find_by_name params[:user][:name]
-    if current_user.remove_friendship user
-      redirect_to friends_path, :notice => "Successfully removed friend!"
-    else
-      redirect_to friends_path, :notice => "Sorry, couldn't remove friend!"
+    @deletee = User.find_by_name params[:user][:name]
+    if @deletee
+      if current_user.remove_friendship @deletee
+        redirect_to friends_path, :notice => "Successfully removed friend!"
+      else
+        redirect_to friends_path, :notice => "Sorry, couldn't remove friend!"
+      end
     end
   end
 

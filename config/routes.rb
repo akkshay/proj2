@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   end
   post "friends", to: "friendships#create", as: "friend_create"
   delete "/friends/", to: "friendships#delete", as: "friend_delete"
+  delete "/friends/", to: "friendships#destroy", as: "friend_destroy"  
   patch "links/pre_send/:sender_id/:link_id", to: "links#pre_send", as: "pre_send"
   patch "links/send/:sender_id/:link_id/username", to: "links#send_link", as: "send"
   # The priority is based upon order of creation: first created -> highest priority.

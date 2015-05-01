@@ -29,4 +29,4 @@
 <%end %>
 
 <h2> Dont Like Someone?</h2>
-	<%= button_to "Remove a Friend!", friend_delete_path(user_id: current_user.id), :class => "button medium", :method => :get %>
+	<%= button_to "Remove a Friend!", friend_delete_path(user_id: current_user.id), :class => "button medium", :method => :delete %>
